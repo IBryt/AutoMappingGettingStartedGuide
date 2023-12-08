@@ -9,6 +9,8 @@ var configuration = new MapperConfiguration(
     cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies())
 );
 
+configuration.AssertConfigurationIsValid();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

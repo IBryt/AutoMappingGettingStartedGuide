@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMappingGettingStartedGuide.Models;
 
 namespace AutoMappingGettingStartedGuide.AutoMapper;
 
@@ -6,9 +7,11 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        //CreateMap<Foo, FooDto>();
-        // Use CreateMap... Etc.. here (Profile methods are the same as configuration methods)
-        Console.WriteLine("creating map");
+        //mapping with error
+        //CreateMap<Source, Destination>(); 
+
+        CreateMap<Source, Destination>()
+            .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
     }
 }
 
