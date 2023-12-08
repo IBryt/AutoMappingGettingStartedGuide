@@ -1,17 +1,19 @@
 using AutoMapper;
+using AutoMappingGettingStartedGuide.AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-var configuration = new MapperConfiguration(
-    cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies())
-);
-
-configuration.AssertConfigurationIsValid();
+builder.Services.AddAutoMapper(typeof(OrganizationProfile).Assembly);
 
 var app = builder.Build();
+
+// Validate the mapping configuration
+app.Services.GetRequiredService<IMapper>()
+    .ConfigurationProvider.AssertConfigurationIsValid();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -28,6 +30,17 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    // Add a specific route for the HelloWorld action as the root
+    endpoints.MapControllerRoute(
+        name: "helloWorldRoute",
+        pattern: "",
+        defaults: new { controller = "Test", action = "HelloWorld" });
+});
 
 app.Run();

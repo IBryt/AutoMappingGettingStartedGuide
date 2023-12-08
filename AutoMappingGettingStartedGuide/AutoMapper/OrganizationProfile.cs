@@ -8,10 +8,10 @@ public class OrganizationProfile : Profile
     public OrganizationProfile()
     {
         //mapping with error
-        //CreateMap<Source, Destination>(); 
+        CreateMap<Source, Destination>(); 
 
-        CreateMap<Source, Destination>()
-            .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+        //CreateMap<Source, Destination>()
+        //    .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
     }
 }
 
