@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMappingGettingStartedGuide.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMappingGettingStartedGuide.Controllers;
@@ -18,6 +19,13 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
+        var calendarEvent = new CalendarEvent
+        {
+            Date = new DateTime(2008, 12, 15, 20, 30, 0),
+            Title = "Company Holiday Party"
+        };
+        CalendarEventForm calendarEventForm = _mapper.Map<CalendarEvent, CalendarEventForm>(calendarEvent);
+
         return Content("Hello, World!");
     }
 }

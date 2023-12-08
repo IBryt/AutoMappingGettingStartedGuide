@@ -8,10 +8,15 @@ public class OrganizationProfile : Profile
     public OrganizationProfile()
     {
         //mapping with error
-        CreateMap<Source, Destination>(); 
+        //CreateMap<Source, Destination>(); 
 
-        //CreateMap<Source, Destination>()
-        //    .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+        CreateMap<Source, Destination>()
+            .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+
+        CreateMap<CalendarEvent, CalendarEventForm>()
+            .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
+            .ForMember(dest => dest.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
+            .ForMember(dest => dest.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
     }
 }
 
