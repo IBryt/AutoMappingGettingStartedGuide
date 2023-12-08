@@ -19,12 +19,15 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
-        var calendarEvent = new CalendarEvent
+        var source = new OuterSource
         {
-            Date = new DateTime(2008, 12, 15, 20, 30, 0),
-            Title = "Company Holiday Party"
+            Value = 5,
+            Inner = new InnerSource { OtherValue = 15 }
         };
-        CalendarEventForm calendarEventForm = _mapper.Map<CalendarEvent, CalendarEventForm>(calendarEvent);
+
+        var dest = _mapper.Map<OuterSource, OuterDest>(source);
+        var typeOuterDest = dest.GetType() == typeof(OuterDest);
+        var typeInnerrDest = dest.Inner.GetType()== typeof(InnerDest) ;
 
         return Content("Hello, World!");
     }

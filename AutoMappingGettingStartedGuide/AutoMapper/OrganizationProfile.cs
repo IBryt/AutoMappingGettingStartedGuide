@@ -17,6 +17,10 @@ public class OrganizationProfile : Profile
             .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
             .ForMember(dest => dest.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
             .ForMember(dest => dest.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
+
+        CreateMap<OuterSource, OuterDest>();
+
+        CreateMap<InnerSource, InnerDest>();
     }
 }
 
