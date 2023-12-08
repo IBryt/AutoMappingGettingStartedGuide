@@ -2,5 +2,5 @@
 
 public class Source
 {
-    public int SomeValue { get; set; }
+    public int Value { get; set; }
 }

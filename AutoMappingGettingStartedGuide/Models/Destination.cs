@@ -2,5 +2,5 @@
 
 public class Destination
 {
-    public int SomeValuefff { get; set; }
+    public int Value { get; set; }
 }

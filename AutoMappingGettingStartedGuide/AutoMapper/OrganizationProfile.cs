@@ -10,8 +10,7 @@ public class OrganizationProfile : Profile
         //mapping with error
         //CreateMap<Source, Destination>(); 
 
-        CreateMap<Source, Destination>()
-            .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+        CreateMap<Source, Destination>();
 
         CreateMap<CalendarEvent, CalendarEventForm>()
             .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
@@ -21,6 +20,11 @@ public class OrganizationProfile : Profile
         CreateMap<OuterSource, OuterDest>();
 
         CreateMap<InnerSource, InnerDest>();
+
+        CreateMap<ParentSource, ParentDestination>()
+            .Include<ChildSource, ChildDestination>();
+
+        CreateMap<ChildSource, ChildDestination>();
     }
 }
 

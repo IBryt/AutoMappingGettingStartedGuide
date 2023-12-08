@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddAutoMapper(typeof(OrganizationProfile).Assembly);
+builder.Services.AddAutoMapper(config =>
+{
+    config.AllowNullCollections = false; //default false
+}, typeof(OrganizationProfile).Assembly);
 
 var app = builder.Build();
 
