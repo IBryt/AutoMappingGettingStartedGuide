@@ -10,6 +10,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(config =>
 {
     config.AllowNullCollections = false; //default false
+    config.DisableConstructorMapping();
 }, typeof(OrganizationProfile).Assembly);
 
 var app = builder.Build();

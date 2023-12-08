@@ -25,6 +25,12 @@ public class OrganizationProfile : Profile
             .Include<ChildSource, ChildDestination>();
 
         CreateMap<ChildSource, ChildDestination>();
+
+        //CreateMap<Source, SourceDto>()
+        //    .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value));
+            
+        CreateMap<Source, SourceDto>()
+            .ForCtorParam("valueParamSomeOtherName", opt => opt.MapFrom(src => src.Value));
     }
 }
 

@@ -21,32 +21,14 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
-        dynamic sources = null;
-        //var sources = new[]
-        //{
-        //    new Source { Value = 5 },
-        //    new Source { Value = 6 },
-        //    new Source { Value = 7 }
-        //};
-
-        IEnumerable<Destination> ienumerableDest = _mapper.Map<Source[], IEnumerable<Destination>>(sources);
-        ICollection<Destination> icollectionDest = _mapper.Map<Source[], ICollection<Destination>>(sources);
-        IList<Destination> ilistDest = _mapper.Map<Source[], IList<Destination>>(sources);
-        List<Destination> listDest = _mapper.Map<Source[], List<Destination>>(sources);
-        Destination[] arrayDest = _mapper.Map<Source[], Destination[]>(sources);
-
-        var sources2 = new[]
+        var source = new Source
         {
-            new ParentSource(),
-            new ChildSource(),
-            new ParentSource()
+            Value = 4,
         };
 
-        var destinations = _mapper.Map<ParentSource[], ParentDestination[]>(sources2);
+        SourceDto sourceDto = _mapper.Map<Source, SourceDto>(source);
 
-        destinations[0].ShouldBeOfType<ParentDestination>();
-        destinations[1].ShouldBeOfType<ChildDestination>();
-        destinations[2].ShouldBeOfType<ParentDestination>();
+
 
         return Content("Hello, World!");
     }
