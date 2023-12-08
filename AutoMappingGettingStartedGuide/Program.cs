@@ -1,7 +1,13 @@
+using AutoMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+var configuration = new MapperConfiguration(
+    cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies())
+);
 
 var app = builder.Build();
 
