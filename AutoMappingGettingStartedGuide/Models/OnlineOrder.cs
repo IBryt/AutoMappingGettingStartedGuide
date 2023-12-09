@@ -1,5 +1,5 @@
 ﻿namespace AutoMappingGettingStartedGuide.Models;
 
-public class OrderDto
-{
+public class OnlineOrder : Order 
+{ 
 }

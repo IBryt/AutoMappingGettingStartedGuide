@@ -7,11 +7,13 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        CreateMap<BaseEntity, BaseDto>()
-            .Include<DerivedEntity, DerivedDto>()
-            .ForMember(dest => dest.SomeMember, opt => opt.MapFrom(src => src.OtherMember));
+        CreateMap<Order, OrderDto>()
+         .Include<OnlineOrder, OnlineOrderDto>()
+         .Include<MailOrder, MailOrderDto>();
 
-        CreateMap<DerivedEntity, DerivedDto>();
+        CreateMap<OnlineOrder, OnlineOrderDto>();
+        
+        CreateMap<MailOrder, MailOrderDto>();
     }
 }
 
