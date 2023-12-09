@@ -7,14 +7,11 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        //CreateMap<Order, OrderDto>()
-        //  .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
-        //  .ReverseMap();
+        CreateMap<BaseEntity, BaseDto>()
+            .Include<DerivedEntity, DerivedDto>()
+            .ForMember(dest => dest.SomeMember, opt => opt.MapFrom(src => src.OtherMember));
 
-        CreateMap<Order, OrderDto>()
-          .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
-          .ReverseMap()
-          .ForPath(s => s.Customer.Name, opt => opt.MapFrom(src => src.CustomerName));
+        CreateMap<DerivedEntity, DerivedDto>();
     }
 }
 
