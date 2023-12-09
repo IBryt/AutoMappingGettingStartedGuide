@@ -7,9 +7,7 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        CreateMap<MyDynamicObject, Foo>()
-            .ReverseMap();
-   
+        CreateMap(typeof(Source<>), typeof(Destination<>));
     }
 }
 

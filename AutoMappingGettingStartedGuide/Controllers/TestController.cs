@@ -22,15 +22,11 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
-        dynamic foo = new MyDynamicObject();
-        foo.Bar = 5;
-        foo.Baz = 6;
+        var source = new Source<int> { Value = 10 };
 
-        var result = _mapper.Map<Foo>(foo);
+        var dest = _mapper.Map<Source<int>, Destination<int>>(source);
 
-
-        dynamic foo2 = _mapper.Map<MyDynamicObject>(result);
-
+        dest.Value.ShouldBeEquivalentTo(10);
 
         return Content("Hello, World!");
     }

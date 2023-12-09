@@ -1,10 +1,6 @@
 ﻿namespace AutoMappingGettingStartedGuide.Models;
 
-public class Destination
+public class Destination<T>
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string Title { get; set; }
-    public string Url { get; set; }
-
+    public T Value { get; set; }
 }
