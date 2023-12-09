@@ -23,34 +23,22 @@ public class TestController : Controller
     {
         var customer = new Customer
         {
-            Name = "George Costanza"
+            Name = "Bob"
         };
+
         var order = new Order
         {
-            Customer = customer
+            Customer = customer,
+            Total = 15.8m
         };
-        var bosco = new Product
-        {
-            Name = "Bosco",
-            Price = 4.99m
-        };
-        order.AddOrderLineItem(bosco, 15);
 
-        OrderDto dto = _mapper.Map<Order, OrderDto>(order);
+        var orderDto = _mapper.Map<Order, OrderDto>(order);
 
-        dto.CustomerName.ShouldBeEquivalentTo("George Costanza");
-        dto.Total.ShouldBeEquivalentTo(74.85m);
+        orderDto.CustomerName = "Joe";
 
-        var source = new Source
-        {
-            Name = "name",
-            InnerSource = new InnerSource {  GetDescription = "descriptionInnerSource", Name = "InnerSource" },
-            OtherInnerSource = new OtherInnerSource { Title = "title", Name = "OtherInnerSource", Description = "descriptionOtherInnerSource" }
-        };
-        var destination = _mapper.Map<Destination>(source);
-        destination.Name.ShouldBe("name");
-        destination.Description.ShouldBe("descriptionInnerSource");
-        destination.Title.ShouldBe("title");
+        _mapper.Map(orderDto, order);
+
+        order.Customer.Name.ShouldBeEquivalentTo("Joe");
 
         return Content("Hello, World!");
     }

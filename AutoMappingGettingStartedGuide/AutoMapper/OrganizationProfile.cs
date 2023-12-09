@@ -7,16 +7,14 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        CreateMap<Order, OrderDto>();
+        //CreateMap<Order, OrderDto>()
+        //  .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+        //  .ReverseMap();
 
-
-        CreateMap<Source, Destination>()
-            .IncludeMembers(s => s.InnerSource, s => s.OtherInnerSource);
-
-        CreateMap<InnerSource, Destination>(MemberList.Source);
-
-
-        CreateMap<OtherInnerSource, Destination>();
+        CreateMap<Order, OrderDto>()
+          .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+          .ReverseMap()
+          .ForPath(s => s.Customer.Name, opt => opt.MapFrom(src => src.CustomerName));
     }
 }
 
