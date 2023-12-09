@@ -2,6 +2,7 @@
 using AutoMappingGettingStartedGuide.Models;
 using Microsoft.AspNetCore.Mvc;
 using Shouldly;
+using System.Dynamic;
 
 
 namespace AutoMappingGettingStartedGuide.Controllers;
@@ -21,9 +22,15 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
-        var order = new OnlineOrder { Referrer = "google" };
-        OrderDto mapped = (OrderDto) _mapper.Map(order, order.GetType(), typeof(OrderDto));
-        mapped.Referrer.ShouldBeNull();
+        dynamic foo = new MyDynamicObject();
+        foo.Bar = 5;
+        foo.Baz = 6;
+
+        var result = _mapper.Map<Foo>(foo);
+
+
+        dynamic foo2 = _mapper.Map<MyDynamicObject>(result);
+
 
         return Content("Hello, World!");
     }

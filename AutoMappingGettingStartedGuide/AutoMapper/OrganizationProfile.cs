@@ -7,13 +7,9 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        CreateMap<Order, OrderDto>()
-          .Include<OnlineOrder, OrderDto>()
-          .Include<MailOrder, OrderDto>()
-          .ForMember(o => o.Referrer, m => m.Ignore());
-
-        CreateMap<OnlineOrder, OrderDto>();
-        CreateMap<MailOrder, OrderDto>();
+        CreateMap<MyDynamicObject, Foo>()
+            .ReverseMap();
+   
     }
 }
 
