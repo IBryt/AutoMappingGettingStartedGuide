@@ -1,7 +1,6 @@
 ﻿namespace AutoMappingGettingStartedGuide.Models;
 
-class InnerSource
+public class Customer
 {
     public string Name { get; set; }
-    public string GetDescription { get; set; }
 }

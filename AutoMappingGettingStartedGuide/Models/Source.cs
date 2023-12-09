@@ -1,6 +1,8 @@
 ﻿namespace AutoMappingGettingStartedGuide.Models;
 
-public class Source
+class Source
 {
-    public int Value { get; set; }
+    public string Name { get; set; }
+    public InnerSource InnerSource { get; set; }
+    public OtherInnerSource OtherInnerSource { get; set; }
 }

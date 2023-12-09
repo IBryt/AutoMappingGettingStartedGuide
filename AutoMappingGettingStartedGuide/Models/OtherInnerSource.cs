@@ -1,10 +1,10 @@
 ﻿namespace AutoMappingGettingStartedGuide.Models;
 
-public class Destination
+class OtherInnerSource
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string Title { get; set; }
-    public string Url { get; set; }
 
+    public string Url { get; set; }
 }

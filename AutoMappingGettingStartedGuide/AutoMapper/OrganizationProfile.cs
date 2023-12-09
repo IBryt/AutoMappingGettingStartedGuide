@@ -7,30 +7,16 @@ public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
     {
-        //mapping with error
-        //CreateMap<Source, Destination>(); 
+        CreateMap<Order, OrderDto>();
 
-        CreateMap<Source, Destination>();
 
-        CreateMap<CalendarEvent, CalendarEventForm>()
-            .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
-            .ForMember(dest => dest.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
-            .ForMember(dest => dest.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
+        CreateMap<Source, Destination>()
+            .IncludeMembers(s => s.InnerSource, s => s.OtherInnerSource);
 
-        CreateMap<OuterSource, OuterDest>();
+        CreateMap<InnerSource, Destination>(MemberList.Source);
 
-        CreateMap<InnerSource, InnerDest>();
 
-        CreateMap<ParentSource, ParentDestination>()
-            .Include<ChildSource, ChildDestination>();
-
-        CreateMap<ChildSource, ChildDestination>();
-
-        //CreateMap<Source, SourceDto>()
-        //    .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value));
-            
-        CreateMap<Source, SourceDto>()
-            .ForCtorParam("valueParamSomeOtherName", opt => opt.MapFrom(src => src.Value));
+        CreateMap<OtherInnerSource, Destination>();
     }
 }
 
