@@ -8,13 +8,12 @@ public class OrganizationProfile : Profile
     public OrganizationProfile()
     {
         CreateMap<Order, OrderDto>()
-         .ForMember(o => o.Id, m => m.MapFrom(s => s.OrderId));
+          .Include<OnlineOrder, OrderDto>()
+          .Include<MailOrder, OrderDto>()
+          .ForMember(o => o.Referrer, m => m.Ignore());
 
-        CreateMap<OnlineOrder, OnlineOrderDto>()
-          .IncludeBase<Order, OrderDto>();
-
-        CreateMap<MailOrder, MailOrderDto>()
-          .IncludeBase<Order, OrderDto>();
+        CreateMap<OnlineOrder, OrderDto>();
+        CreateMap<MailOrder, OrderDto>();
     }
 }
 

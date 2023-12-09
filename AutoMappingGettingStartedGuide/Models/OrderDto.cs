@@ -2,5 +2,5 @@
 
 public class OrderDto
 {
-    public int Id { get; set; }
+    public string Referrer { get; set; }
 }

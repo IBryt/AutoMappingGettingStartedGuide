@@ -21,6 +21,10 @@ public class TestController : Controller
 
     public IActionResult HelloWorld()
     {
-          return Content("Hello, World!");
+        var order = new OnlineOrder { Referrer = "google" };
+        OrderDto mapped = (OrderDto) _mapper.Map(order, order.GetType(), typeof(OrderDto));
+        mapped.Referrer.ShouldBeNull();
+
+        return Content("Hello, World!");
     }
 }
